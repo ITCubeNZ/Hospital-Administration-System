@@ -14,7 +14,7 @@ class Patient(models.Model):
     patient_id = models.CharField(max_length=7, primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    dob = models.DateTimeField()
+    dob = models.DateField()
     phone = models.CharField(max_length=15)
 
     def __str__(self):
