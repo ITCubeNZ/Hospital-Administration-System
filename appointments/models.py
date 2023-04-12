@@ -32,3 +32,23 @@ class Patient(models.Model):
     last_name = models.CharField(max_length=50)
     dob = models.DateTimeField()
     phone = models.CharField(max_length=15)
+
+class Staff(models.Model):
+    """
+        Models for Staff
+
+        staff_id = Staff Code Representing the Primary Key
+        first_name =  First Name of the Staff Member
+        last_name = Last name of the staff member
+        phone = Contact Number of the Staff Member 
+        email = Email of the Staff Member
+        description = Brief Description of the Staff Member
+    """
+    staff_id = models.AutoField(primary_key=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=15)
+    email = models.CharField(max_length=50)
+    description = models.TextField()
+
+    
