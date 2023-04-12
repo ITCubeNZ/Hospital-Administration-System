@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from appointments.models import Staff
 
 def index(request):
     """
@@ -10,4 +11,6 @@ def staff(request):
     """
         Returns a list of Staff Members
     """
-    return render(request, "staff.html")
+    staff = Staff.objects.all()
+
+    return render(request, "staff.html", context={"staff": staff})
