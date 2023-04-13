@@ -3,6 +3,46 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+class Address(models.Model):
+    """
+        Address Model
+    """
+    address_id = models.AutoField(primary_key=True)
+    street_details = models.CharField(max_length=100)
+    suburb = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    zipcode = models.CharField(max_length=6)
+
+class Department(models.Model):
+    """
+        Models for hospital department. 
+
+        department_id = auto_id representing the ID
+        department_name = Represents the department_name
+        hod = Represents the head of department
+    """
+    department_id = models.AutoField(primary_key=True)
+    department_name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=15)
+    email = models.CharField(max_length=100)
+    no_of_appointment_rooms = models.IntegerField()
+    no_of_hospital_beds = models.IntegerField()
+    last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        # String Reperesentation
+        return "{}".format(self.department_name)
+    
+class Facility(models.Model):
+    """
+        Atrributes and Description here
+    """
+    facility_id = models.AutoField(primary_key=True)
+    department_id = models.ForeignKey(Department, on_delete=models.CASCADE, name="Department")
+    facility_name = models.CharField(max_length=100)
+    last_updated = models.DateTimeField(auto_now=True)
+
+
 class Patient(models.Model):
     """
         Model for Patients
@@ -16,8 +56,10 @@ class Patient(models.Model):
     patient_id = models.CharField(max_length=7, primary_key=True, name="NHI")
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    dob = models.DateField(name="Date of Birth")
+    date_of_birth = models.DateField(name="Date of Birth")
     phone = models.CharField(max_length=15)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         # String Representation
@@ -32,13 +74,16 @@ class Staff(models.Model):
         last_name = Last name of the staff member
         phone = Contact Number of the Staff Member 
         email = Email of the Staff Member
-        description = Brief Description of the Staff Member
     """
     staff_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.CharField(max_length=50)
+    date_of_birth = models.DateField(name="Date of Birth")
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         # String representation
@@ -56,24 +101,10 @@ class Appointment(models.Model):
     appointment_id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, name="Staff")
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     appointment_date = models.DateTimeField()
     contact_phone = models.CharField(max_length=15)
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "Appointment for {} with {}".format(self.patient, self.staff_id)
-
-class Department(models.Model):
-    """
-        Models for hospital department. 
-
-        department_id = auto_id representing the ID
-        department_name = Represents the department_name
-        hod = Represents the head of department
-    """
-    department_id = models.AutoField(primary_key=True)
-    department_name = models.CharField(max_length=50)
-    hod = models.ForeignKey(Staff, on_delete=models.CASCADE, name="Head of Department")
-
-    def __str__(self):
-        # String Reperesentation
-        return "{}".format(self.department_name)
