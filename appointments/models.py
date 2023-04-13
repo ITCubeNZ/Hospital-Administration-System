@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 class Patient(models.Model):
     """
@@ -11,10 +13,10 @@ class Patient(models.Model):
         dob = The Date of Birth of the patient
         phone = This represents the pateients phone number. 
     """
-    patient_id = models.CharField(max_length=7, primary_key=True)
+    patient_id = models.CharField(max_length=7, primary_key=True, name="NHI")
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    dob = models.DateField()
+    dob = models.DateField(name="Date of Birth")
     phone = models.CharField(max_length=15)
 
     def __str__(self):
@@ -37,7 +39,6 @@ class Staff(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.CharField(max_length=50)
-    description = models.TextField()
 
     def __str__(self):
         # String representation
@@ -54,7 +55,7 @@ class Appointment(models.Model):
     """
     appointment_id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, name="Staff")
     appointment_date = models.DateTimeField()
     contact_phone = models.CharField(max_length=15)
 
@@ -71,11 +72,8 @@ class Department(models.Model):
     """
     department_id = models.AutoField(primary_key=True)
     department_name = models.CharField(max_length=50)
-    hod = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    hod = models.ForeignKey(Staff, on_delete=models.CASCADE, name="Head of Department")
 
     def __str__(self):
         # String Reperesentation
         return "{}".format(self.department_name)
-
-
-    
