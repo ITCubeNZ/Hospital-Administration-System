@@ -1,0 +1,12 @@
+{% block content %}
+<h1>{{department.department_name}}</h1>
+Phone: {{department.phone}}
+<br>
+Email: {{department.email}}
+<br>
+Number of Rooms: {{department.no_of_appointment_rooms}}
+<br>
+Number of Beds: {{department.no_of_hospital_beds}}
+<br>
+Address: {{address.street_details}}, {{address.suburb}}, {{address.city}}, {{address.zipcode}}
+{% endblock content%}

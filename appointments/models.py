@@ -12,6 +12,13 @@ class Address(models.Model):
     suburb = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=6)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        """
+            String Representation of Address Model
+        """
+        return "{}, {}, {}, {}".format(self.street_details, self.suburb, self.city, self.zipcode)
 
 class Department(models.Model):
     """
@@ -28,20 +35,11 @@ class Department(models.Model):
     no_of_appointment_rooms = models.IntegerField()
     no_of_hospital_beds = models.IntegerField()
     last_updated = models.DateTimeField(auto_now=True)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
 
     def __str__(self):
         # String Reperesentation
         return "{}".format(self.department_name)
-    
-class Facility(models.Model):
-    """
-        Atrributes and Description here
-    """
-    facility_id = models.AutoField(primary_key=True)
-    department_id = models.ForeignKey(Department, on_delete=models.CASCADE, name="Department")
-    facility_name = models.CharField(max_length=100)
-    last_updated = models.DateTimeField(auto_now=True)
-
 
 class Patient(models.Model):
     """
@@ -80,6 +78,7 @@ class Staff(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.CharField(max_length=50)
+    position = models.CharField(max_length=30)
     date_of_birth = models.DateField(name="Date of Birth")
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
@@ -105,6 +104,24 @@ class Appointment(models.Model):
     appointment_date = models.DateTimeField()
     contact_phone = models.CharField(max_length=15)
     last_updated = models.DateTimeField(auto_now=True)
+    by_referral = models.BooleanField(default=False)
+    appointment_charges = models.FloatField(default=0.00)
 
     def __str__(self):
         return "Appointment for {} with {}".format(self.patient, self.staff_id)
+    
+class Payment(models.Model):
+    """
+        Model Representing the Payment Class
+    """
+    payment_id = models.AutoField(primary_key=True)
+    appointment_id = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+    amount_paid = models.FloatField()
+    cash = models.BooleanField(default=False)
+    card = models.BooleanField(default=True)
+    payment_date = models.DateTimeField(auto_created=True)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "payment to be paid on {}.".format(self.payment_date)
