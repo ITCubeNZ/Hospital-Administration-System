@@ -24,9 +24,9 @@ As part of our final project for IT6006: Secure Web Applicaiton Development with
 
 * Make migrations, and migrate. 
 
-`py manage.py makemigrations`
-
 `py manage.py migrate`
+
+`py manage.py makemigrations`
 
 ## Common Bugs and How to Fix Them? 
 
