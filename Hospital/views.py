@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from appointments.models import Staff, Department, Address
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
 
 def index(request):
     """
@@ -39,4 +41,19 @@ def view_department(request, department_id):
     address = Address.objects.get(pk=model.address_id)
 
     return render(request, 'view_department.html', {"department": model, "address": address})
+
+def register(request):
+    """
+        Views for Registration
+    """
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context= {'form' : form}
+
+    return render(request, 'accounts/register.html', context)
 
