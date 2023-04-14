@@ -1,6 +1,6 @@
 {% block content %}
 <h1>Departments</h1>
 {% for object in department %}
-<h2>{{object.department_name}}</h2>
+<h2><a href="/departments/{{object.department_id}}">{{object.department_name}}</a></h2>
 {% endfor %}
 {% endblock %}
