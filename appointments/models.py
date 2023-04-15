@@ -72,6 +72,7 @@ class Staff(models.Model):
         phone = Contact Number of the Staff Member 
         email = Email of the Staff Member
     """
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     staff_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
