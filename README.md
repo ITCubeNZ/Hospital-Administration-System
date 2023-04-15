@@ -45,3 +45,8 @@ This is caused when the data model is altered and Django struggles to make chang
 `py manage.py makemigrations`
 
 `py manage.py createsuperuser`
+
+
+### DoesNotExist at /register/ 
+
+If you have reset the datbase for any reason, you will need to ensure that you re-create the Patient and Staff databases so that user registration is done smoothly.
