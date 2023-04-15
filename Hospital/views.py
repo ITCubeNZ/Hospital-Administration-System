@@ -9,6 +9,7 @@ def index(request):
     """
         Returns the HomePage
     """
+    
     return render(request, "index.html")
 
 def staff(request):
@@ -82,6 +83,9 @@ def login_page(request):
     return render(request, 'accounts/login.html', context)
 
 def logoutUser(request):
+    """
+        View to log the user out.
+    """
     logout(request)
     messages.success(request, 'You have been successfully logged out.')
 

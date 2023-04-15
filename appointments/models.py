@@ -49,6 +49,7 @@ class Patient(models.Model):
         dob = The Date of Birth of the patient
         phone = This represents the pateients phone number. 
     """
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     patient_id = models.CharField(max_length=7, primary_key=True, name="NHI")
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
