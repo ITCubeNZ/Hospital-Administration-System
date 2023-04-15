@@ -99,3 +99,30 @@ def logoutUser(request):
 
     return redirect('login')
 
+def dashboard(request):
+    """
+        View for the Patient Dashboard
+    """
+
+    context = {}
+
+    return render(request, 'patient_dash.html', context)
+
+def book_appointment(request):
+    """
+        View for booking an appoiontment
+    """
+
+    context = {}
+
+    return render(request, 'book_appointment.html', context)
+
+def view_appointments(request):
+    """
+        View for viewing a users appointments
+    """
+
+    context = {}
+
+    return render(request, 'view_appointment.html', context)
+
