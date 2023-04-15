@@ -50,12 +50,12 @@ class Patient(models.Model):
         phone = This represents the pateients phone number. 
     """
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    patient_id = models.CharField(max_length=7, primary_key=True, name="NHI")
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    date_of_birth = models.DateField(name="Date of Birth")
-    phone = models.CharField(max_length=15)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    patient_id = models.AutoField(primary_key=True)
+    first_name = models.CharField(max_length=50, null=True)
+    last_name = models.CharField(max_length=50, null=True)
+    date_of_birth = models.DateField(name="Date of Birth", null=True)
+    phone = models.CharField(max_length=15, null=True)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
     last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):

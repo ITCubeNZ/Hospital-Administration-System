@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from appointments.models import Staff, Department, Address
+from appointments.models import Staff, Department, Address, Patient
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group
 
 def index(request):
     """
@@ -54,9 +55,16 @@ def register(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            group = Group.objects.get(name='Patient')
+            user.groups.add(group)
+            Patient.objects.create(
+                user=user,
+                first_name = user.first_name,
+                last_name = user.last_name,
+            )
+            messages.success(request, 'Account was created for ' + username)
             return redirect('login')
 
     context= {'form' : form}
