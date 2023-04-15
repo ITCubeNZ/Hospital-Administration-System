@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from appointments.models import Staff, Department, Address, Patient
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm
+from .forms import CreateUserForm, UpdateAccountForm, AppointmentForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     """
@@ -83,7 +84,7 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('dashboard')
         else: 
             messages.info(request, 'Username or Password is not valid.')
     context = {}
@@ -99,15 +100,19 @@ def logoutUser(request):
 
     return redirect('login')
 
+@login_required(login_url='login')
 def dashboard(request):
     """
         View for the Patient Dashboard
     """
-
     context = {}
+    current_user = request.user
+
+    context['name'] = current_user.first_name + ' ' + current_user.last_name
 
     return render(request, 'patient_dash.html', context)
 
+@login_required(login_url='login')
 def book_appointment(request):
     """
         View for booking an appoiontment
@@ -115,8 +120,17 @@ def book_appointment(request):
 
     context = {}
 
+    form = AppointmentForm(request.POST or None)
+
+    if form.is_valid():
+        # Save form to data model
+        form.save()
+
+    context['form'] = form
+
     return render(request, 'book_appointment.html', context)
 
+@login_required(login_url='login')
 def view_appointments(request):
     """
         View for viewing a users appointments
@@ -125,4 +139,20 @@ def view_appointments(request):
     context = {}
 
     return render(request, 'view_appointment.html', context)
+
+@login_required(login_url='login')
+def update_account(request):
+    """
+        View for Updating a users Patient Model
+    """
+    context = {}
+    form = UpdateAccountForm(request.POST or None)
+
+    if form.is_valid():
+        # Save form to data model
+        form.save()
+
+    context['form'] = form
+
+    return render(request, 'update_user.html', context)
 
