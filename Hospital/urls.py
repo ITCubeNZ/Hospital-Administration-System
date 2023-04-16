@@ -30,5 +30,5 @@ urlpatterns = [
     path('dashboard/', dashboard, name='dashboard'),
     path('dashboard/book', book_appointment, name="book appointment"),
     path('dashboard/appointments', view_appointments, name="view appointments"),
-    path('dashboard/account/update', update_account, name='update account')
+    path('dashboard/update_account', update_account, name='update account')
 ]
