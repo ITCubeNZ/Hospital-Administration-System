@@ -110,6 +110,9 @@ def dashboard(request):
 
     context['name'] = current_user.first_name + ' ' + current_user.last_name
 
+    current_patient = Patient.objects.get(user=current_user)
+    context['patient'] = current_patient
+
     return render(request, 'patient_dash.html', context)
 
 @login_required(login_url='login')
@@ -146,11 +149,16 @@ def update_account(request):
         View for Updating a users Patient Model
     """
     context = {}
-    form = UpdateAccountForm(request.POST or None)
+    current_user = request.user
+    context['user'] = current_user
+    data = Patient.objects.get(user=current_user)
+    form = UpdateAccountForm(instance=data)
 
-    if form.is_valid():
-        # Save form to data model
-        form.save()
+    if request.method == 'POST':
+        if form.is_valid():
+            # Save form to data model
+            form.save()
+            return redirect('dashboard')
 
     context['form'] = form
 

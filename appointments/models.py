@@ -49,14 +49,14 @@ class Patient(models.Model):
         dob = The Date of Birth of the patient
         phone = This represents the pateients phone number. 
     """
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    patient_id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, blank=True)
+    patient_id = models.AutoField(primary_key=True, blank=True)
     first_name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=50, null=True)
-    date_of_birth = models.DateField(name="Date of Birth", null=True)
+    date_of_birth = models.DateField(name="Date of Birth", null=True, blank=True)
     phone = models.CharField(max_length=15, null=True)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
-    last_updated = models.DateTimeField(auto_now=True)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True, blank=True)
+    last_updated = models.DateTimeField(auto_now=True, blank=True)
 
     def __str__(self):
         # String Representation
