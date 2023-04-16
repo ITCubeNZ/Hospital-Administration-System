@@ -105,6 +105,9 @@ def dashboard(request):
     """
         View for the Patient Dashboard
     """
+    if request.user.is_superuser:
+        return redirect('/admin')
+
     context = {}
     current_user = request.user
 
