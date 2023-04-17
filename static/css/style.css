@@ -1,0 +1,48 @@
+*{
+    background-color: aquamarine;
+    box-sizing: border-box;
+}
+.form{
+    border: 2px solid black ;
+    padding: 30px;
+    margin-left: 20%;
+    margin-right: 20%; 
+    display: block;
+    text-align: center;
+}
+.form label{
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+    width: 75%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box; 
+    align-items: center;
+
+}
+
+.form  input[type=text], input[type=password] input[type=email] {
+    width: 75%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box; 
+    align-items: center;
+} 
+
+.form button { 
+    background-color: #112d23;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 70%;
+} 
+.form ol li{
+    text-decoration: none;
+    list-style-type: none;
+}

@@ -1,28 +1,23 @@
-{% extends 'base.html' %}
-{% block content%}
-<h1>Register</h1>
-
-<form method="POST" >
-    {% csrf_token %}
-    {{form.username.label}}
-    {{form.username}}
-    <br>
-    {{form.first_name.label}}
-    {{form.first_name}}
-    <br>
-    {{form.last_name.label}}
-    {{form.last_name}}
-    <br>
-    {{form.email.label}}
-    {{form.email}}
-    <br>
-    {{form.password1.label}}
-    {{form.password1}}
-    <br>
-    {{form.password2.label}}
-    {{form.password2}}
-    <br>
-    <input type="submit" name="Create User">
-</form>
-<p><b>Already have an account? Click <a href="/login">here</a> to login.</b>
+{% extends 'base.html' %} {% block content%}
+<h3>Register</h3>
+<div class="form">
+  <form method="POST">
+    {% csrf_token %} {{form.username.label}} {{form.username}}
+    <br />
+    {{form.first_name.label}} {{form.first_name}}
+    <br />
+    {{form.last_name.label}} {{form.last_name}}
+    <br />
+    {{form.email.label}} {{form.email}}
+    <br />
+    {{form.password1.label}} {{form.password1}}
+    <br />
+    {{form.password2.label}} {{form.password2}}
+    <br />
+    <button type="submit" name="Create User">Submit</button>
+  </form>
+  <p>
+    <b>Already have an account? Click <a href="/login">here</a> to login.</b>
+  </p>
+</div>
 {% endblock %}
