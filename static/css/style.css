@@ -1,7 +1,124 @@
 *{
-    background-color: aquamarine;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
+body{
+    background: rgb(241, 243, 245);
+}
+/* nav bar css for all pages */
+nav{
+    height: 80px;
+    background: #1b1b1b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 50px 0px 100px;
+}
+nav .logo a{
+    font-size: 33px;
+    color: whitesmoke;
+    font-weight: 600;
+    text-decoration: none;
+}
+nav ul{
+    display: flex;
+    list-style: none;
+}
+nav ul li{
+    margin: 0 5px;
+}
+nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+}
+nav ul li a:hover,
+nav ul li a.active{
+    color: #1b1b1b; 
+    background: #fff;
+}
+nav .menu-btn i{
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+}
+#click{
+    display: none;
+}
+/* image css on the home page */
+img{
+    width:50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* Home page css */
+.main_text{
+    margin: 20px;
+    min-height: 20vh; 
+    padding: 3vw; 
+    border: 5px solid darkgoldenrod;
+    border-radius: 0 25px;
+} 
+.main_text h3{
+    font-weight: bold;
+    color: black;
+    font-size: 3vw;
+    text-align: center;
+    padding: 5px;
+}
+.main_text p{
+    color:black;
+    text-indent: 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 5px 10px;
+}
+
+.s_text{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 4%;
+}
+/* Home page button links */
+.home_button{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 5%;
+}
+.home_button button{
+    background: white;
+    width: 270px;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.home_button a{
+    background-color: #68c6b8;
+    color: #fff;
+    padding: 15px 20px;
+    display: block;
+    text-align: center;
+    margin: 20px 50px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+
+
+
+
 .form{
     border: 2px solid black ;
     padding: 30px;
@@ -45,4 +162,99 @@
 .form ol li{
     text-decoration: none;
     list-style-type: none;
+} 
+
+
+
+.footer{
+    padding: 40px 0;
+    background-color: black;
+}
+.footer .social{
+    text-align: center;
+    padding-bottom: 25px;
+    color: #4b4c4d;
+}
+.footer .social a{
+    font-size: 24px;
+    color: inherit;
+    border: 1px solid #ccc;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 8px;
+    opacity: 0.75;
+}
+.footer .social a:hover{
+    opacity: 0.9;
+}
+.footer ul{
+    margin-top: 0;
+    padding: 0; 
+    list-style: none;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+    text-align: center;
+}
+.footer ul a{
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.8;
+}
+.footer ul li{
+    display: inline-block;
+    padding: 0 15px;
+}
+.footer ul li a:hover{
+    opacity: 1;
+}
+.footer .copyright{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+}
+
+
+
+
+
+
+@media (max-width: 940px) {
+    nav .menu-btn i{
+        display: block;
+    }
+    #click:checked ~ .menu-btn i::before{
+        content: "\f00d";
+    }
+    nav ul{
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        background: #111;
+        height: 100vh;
+        width: 100%;
+        display: block;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    #click:checked ~ ul{
+        left: 0%;
+    }
+    nav ul li{
+        margin: 40px 0;
+    }
+    nav ul li a{
+        font-size: 20px;
+        display: block;
+    }
+    nav ul li a:hover,
+    nav ul li a.active{
+        color: cyan;
+        background:none;
+    }
 }

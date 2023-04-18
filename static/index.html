@@ -1,5 +1,21 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1>Home Page</h1>
-<p>This is the homepage of our application</p>
+{% extends 'base.html' %} {% block content %} {% load static %}
+<img src="{% static 'images/h.jpg' %}" />
+<div class="main_text">
+  <h3>Welcome to Bowen</h3>
+  <p>
+    At Bowen people are at the centre of everything we do. We pride ourselves on
+    the exceptional outcomes we deliver to everyone in our care. We perform a
+    wide range of diagnostic, interventional and surgical procedures. And with a
+    long-standing history of serving our community, we are proud to be the
+    number one provider of private surgical and oncological services in the
+    Wellington region.
+  </p>
+</div>
+
+<h3 class="s_text">How we can help you?</h3>
+<div class="home_button">
+  <button><a href="/staff">Our Team</a></button>
+  <button><a href="/departments">Our Facilities</a></button>
+  <button><a href="/">About Us</a></button>
+</div>
 {% endblock %}
