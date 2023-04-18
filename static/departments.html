@@ -1,7 +1,21 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1>Departments</h1>
-{% for object in department %}
-<h2><a href="/departments/{{object.department_id}}">{{object.department_name}}</a></h2>
-{% endfor %}
+{% extends 'base.html' %} {% block content %}
+<div class="d_text">
+  <h3>Our Specilities</h3>
+  <p>
+    We are proud to offer a wide range of specialties undertaken by expert
+    specialists in our outstanding hospital facilities. Our aim is to always
+    offer the highest level of care. Find out more about our specialties below.
+  </p>
+</div>
+{% load static %}
+<img class="d_img" src="{% static 'images/spe.jpg' %}" />
+<div class="container">
+  <div class="card">
+    {% for object in department %}
+    <li>
+      <a href="/departments/{{object.department_id}}">{{object.department_name}}</a>
+    </li>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
