@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block content%}
-<h3>Login</h3>
-<div class="form">
-    <form method="POST">
+    <div class="s_text">
+        <h3>Login</h3>
+        <p>Please log in to your account to access your deatils.</p>
+    </div>
+    <div class="form">
+        <form method="POST">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="username">
-        
-        <input type="password" name="password" placeholder="password">
-
-        <button type="submit" name="Login">login</button>
-    </form>
-
-    <b><p>Don't have an account? Click <a href="/register">here</a> to register an account.</b></p>
-
-{% for message in messages %}
-    <p>{{message}}</p>
-</div>
+            <input type="text" name="username" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <button type="submit" name="Login">login</button>
+        </form>
+        <p>Don't have an account? Click <a href="/register">here</a> to register an account.</p>
+    </div>
+        {% for message in messages %}
+        <p>{{message}}</p>
+    
 {% endfor %}
 {% endblock%}

@@ -118,54 +118,55 @@ img{
 
 
 
-
+/* Account log in and Register pages css */
 .form{
     border: 2px solid black ;
-    padding: 30px;
-    margin-left: 20%;
-    margin-right: 20%; 
+    padding: 5%;
+    margin: 5% 5%;
     display: block;
     text-align: center;
 }
-.form label{
-    font-size: 15px;
-    font-style: italic;
-    font-weight: bold;
-    width: 75%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    box-sizing: border-box; 
-    align-items: center;
 
-}
-
-.form  input[type=text], input[type=password] input[type=email] {
-    width: 75%;
+.form  input[type=text], input[type=password], input[type=email] {
+    width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
+    border-radius: 25px;
     box-sizing: border-box; 
     align-items: center;
 } 
 
+.form ::placeholder{
+    text-align: center;
+}
 .form button { 
-    background-color: #112d23;
+    background-color: #32b7d8;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
+    border-radius: 45px;
     cursor: pointer;
-    width: 70%;
+    width: 50%;
 } 
-.form ol li{
+.form button:hover {
+    opacity: 0.6;
+  }
+.form p {
+    font-size: 20px; 
+    font-style: normal;
+    padding: 2%;
+}
+.form a{
     text-decoration: none;
-    list-style-type: none;
-} 
+    font-style: italic;
+}
 
 
 
+/* footer css for all pages */
 .footer{
     padding: 40px 0;
     background-color: black;
