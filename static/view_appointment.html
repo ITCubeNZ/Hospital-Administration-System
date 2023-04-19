@@ -1,6 +1,9 @@
 {% extends 'dash-base.html' %}
 {% block content %}
     <h1>View Appointments</h1>
+    {% if no_appointments == 0 %}
+        You have no appointments, you should probably make one! 
+    {% endif %}
     {% for appointment in appointments %}
         {{appointment.appointment_date}} with {{appointment.staff_id}} <button><a href="/appointments/{{appointment.appointment_id}}/delete">Cancel Appointment</a></button>
     {% endfor %}

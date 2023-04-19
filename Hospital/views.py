@@ -154,8 +154,9 @@ def view_appointments(request):
         View for viewing a users appointments
     """
     appointments = Appointment.objects.filter(patient = Patient.objects.get(user=request.user))
+    no_appointments = len(appointments)
 
-    context = {"appointments": appointments}
+    context = {"appointments": appointments, "no_appointments": no_appointments}
 
     return render(request, 'view_appointment.html', context)
 
