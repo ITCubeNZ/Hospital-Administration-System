@@ -1,5 +1,8 @@
 {% extends 'dash-base.html' %}
 {% block content %}
     <h1>Welcome to your Patient Dashboard, {{name}}.</h1>
-    {{patient}}
+    <h3>You currently have {{appointments}} Appointments</h3>
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
 {% endblock %}

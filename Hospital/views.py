@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from appointments.models import Staff, Department, Address, Patient
+from appointments.models import Staff, Department, Address, Patient, Appointment
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm, UpdateAccountForm, AppointmentForm
 from django.contrib import messages
@@ -110,11 +110,11 @@ def dashboard(request):
 
     context = {}
     current_user = request.user
-
-    context['name'] = current_user.first_name + ' ' + current_user.last_name
-
     current_patient = Patient.objects.get(user=current_user)
     context['patient'] = current_patient
+    appointments = Appointment.objects.filter(patient = Patient.objects.get(user=request.user))
+    context['appointments'] = len(appointments)
+    context['name'] = current_patient.first_name + ' ' + current_patient.last_name
 
     return render(request, 'patient_dash.html', context)
 
@@ -124,16 +124,27 @@ def book_appointment(request):
         View for booking an appoiontment
     """
 
-    context = {}
+    form = AppointmentForm()
 
-    form = AppointmentForm(request.POST or None)
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            Appointment.objects.create(
+                patient = Patient.objects.get(user=request.user),
+                staff_id = form.cleaned_data.get('staff_id'),
+                department = form.cleaned_data.get('department'),
+                appointment_date = form.cleaned_data.get('appointment_date'),
+                contact_phone = form.cleaned_data.get('contact_phone'),
+                by_referral = form.cleaned_data.get('by_referral'),
+                appointment_charges = form.cleaned_data.get('appointment_charges')
+            )
+            messages.success(request, 'Your appointment was successfully booked. ')
+            return redirect('dashboard')
+        else:
+            messages.info(request, "The data wasn't successfully validated. Please make sure appointment date is formateted in YYYY-MM--DD HH-MM-SS. (E.g. 2006-10-25 14:30:00)")
 
-    if form.is_valid():
-        # Save form to data model
-        form.save()
-
-    context['form'] = form
-
+    context = {"form": form}
+        
     return render(request, 'book_appointment.html', context)
 
 @login_required(login_url='login')
@@ -141,8 +152,10 @@ def view_appointments(request):
     """
         View for viewing a users appointments
     """
+    appointments = Appointment.objects.filter(patient = Patient.objects.get(user=request.user))
+    print(len(appointments))
 
-    context = {}
+    context = {"appointments": appointments}
 
     return render(request, 'view_appointment.html', context)
 
@@ -151,19 +164,20 @@ def update_account(request):
     """
         View for Updating a users Patient Model
     """
-    context = {}
-    current_user = request.user
-    context['user'] = current_user
-    data = Patient.objects.get(user=current_user)
-    form = UpdateAccountForm(instance=data)
 
+    current_patient = Patient.objects.get(user=request.user)
+    form = UpdateAccountForm(instance=current_patient)
     if request.method == 'POST':
+        form = UpdateAccountForm(request.POST)
         if form.is_valid():
-            # Save form to data model
-            form.save()
-            return redirect('dashboard')
+            current_patient = Patient.objects.filter(user=request)
+            current_patient.user = request.user
+            current_patient.first_name = form.cleaned_data.get('first_name')
+            current_patient.last_name = form.cleaned_data.get('last_name')
+            current_patient.date_of_birth = form.cleaned_data.get('date_of_birth')
+            current_patient.phone = form.cleaned_data.get('phone')
+            current_patient.address = form.cleaned_data.get('addresss')
+            current_patient.save()
 
-    context['form'] = form
-
-    return render(request, 'update_user.html', context)
+    return render(request, 'update_user.html', {'form': form})
 

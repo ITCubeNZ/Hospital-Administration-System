@@ -99,7 +99,7 @@ class Appointment(models.Model):
     """
     appointment_id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, name="Staff")
+    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     appointment_date = models.DateTimeField()
     contact_phone = models.CharField(max_length=15)
