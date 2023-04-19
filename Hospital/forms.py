@@ -1,9 +1,8 @@
-from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 
-from appointments.models import Patient, Appointment
+from appointments.models import Patient, Appointment, Address
 
 class CreateUserForm(UserCreationForm):
     """
@@ -28,3 +27,11 @@ class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         fields = ["staff_id", "department", "appointment_date", "contact_phone", "by_referral", "appointment_charges"]
+
+class AddressForm(forms.ModelForm):
+    """
+        Form used by users to add their address. 
+    """
+    class Meta:
+        model = Address
+        fields = "__all__"

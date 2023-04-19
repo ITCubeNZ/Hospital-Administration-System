@@ -1,0 +1,13 @@
+{% extends 'dash-base.html' %}
+{% block content %}
+    <h1>Add Your Address</h1>
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" name="Add Address">Add Address</button>
+    </form>
+
+{% endblock %}

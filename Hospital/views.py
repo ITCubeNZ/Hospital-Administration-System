@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from appointments.models import Staff, Department, Address, Patient, Appointment
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, UpdateAccountForm, AppointmentForm
+from .forms import CreateUserForm, UpdateAccountForm, AppointmentForm, AddressForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
@@ -184,4 +184,22 @@ class DeleteAppointmentView(DeleteView):
     model = Appointment
     success_url = "/dashboard"
     template_name = "confirm_delete.html"
+
+@login_required(login_url='login')
+def add_address(request):
+    """
+        View for adding address.
+    """
+    form = AddressForm()
+    if request.method == 'POST':
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            Address.objects.create(
+                street_details = form.cleaned_data.get('street_details'),
+                suburb = form.cleaned_data.get('suburb'),
+                city = form.cleaned_data.get('city'),
+                zipcode = form.cleaned_data.get('zipcode')
+            )
+
+    return render(request, 'address.html', {"form": form})
 

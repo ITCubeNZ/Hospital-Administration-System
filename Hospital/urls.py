@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import index, staff, view_staff, department, view_department, register, login_page, logoutUser, dashboard, book_appointment, view_appointments, update_account, DeleteAppointmentView
+from .views import index, staff, view_staff, department, view_department, register, login_page, logoutUser, dashboard, book_appointment, view_appointments, update_account, DeleteAppointmentView, add_address
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,5 +31,6 @@ urlpatterns = [
     path('dashboard/book', book_appointment, name="book appointment"),
     path('dashboard/appointments', view_appointments, name="view appointments"),
     path('dashboard/update_account', update_account, name='update account'),
-    path('appointments/<pk>/delete', DeleteAppointmentView.as_view())
+    path('appointments/<pk>/delete', DeleteAppointmentView.as_view()),
+    path('dashboard/address', add_address, name="add address")
 ]
