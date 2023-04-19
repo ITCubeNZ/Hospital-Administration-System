@@ -169,15 +169,9 @@ def update_account(request):
     current_patient = Patient.objects.get(user=request.user)
     form = UpdateAccountForm(instance=current_patient)
     if request.method == 'POST':
-        form = UpdateAccountForm(request.POST)
+        form = UpdateAccountForm(request.POST, instance=current_patient)
         if form.is_valid():
-            current_patient.user = request.user
-            current_patient.first_name = form.cleaned_data.get('first_name')
-            current_patient.last_name = form.cleaned_data.get('last_name')
-            current_patient.date_of_birth = form.cleaned_data.get('date_of_birth')
-            current_patient.phone = form.cleaned_data.get('phone')
-            current_patient.address = form.cleaned_data.get('addresss')
-            current_patient.save()
+            form.save()
 
     return render(request, 'update_user.html', {'form': form})
 
