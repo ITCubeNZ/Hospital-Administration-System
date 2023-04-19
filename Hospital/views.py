@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import DeleteView
 
 def index(request):
     """
@@ -153,7 +154,6 @@ def view_appointments(request):
         View for viewing a users appointments
     """
     appointments = Appointment.objects.filter(patient = Patient.objects.get(user=request.user))
-    print(len(appointments))
 
     context = {"appointments": appointments}
 
@@ -170,7 +170,6 @@ def update_account(request):
     if request.method == 'POST':
         form = UpdateAccountForm(request.POST)
         if form.is_valid():
-            current_patient = Patient.objects.filter(user=request)
             current_patient.user = request.user
             current_patient.first_name = form.cleaned_data.get('first_name')
             current_patient.last_name = form.cleaned_data.get('last_name')
@@ -180,4 +179,9 @@ def update_account(request):
             current_patient.save()
 
     return render(request, 'update_user.html', {'form': form})
+
+class DeleteAppointmentView(DeleteView):
+    model = Appointment
+    success_url = "/dashboard"
+    template_name = "confirm_delete.html"
 

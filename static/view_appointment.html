@@ -2,6 +2,6 @@
 {% block content %}
     <h1>View Appointments</h1>
     {% for appointment in appointments %}
-        {{appointment.appointment_date}} with {{appointment.staff_id}}
+        {{appointment.appointment_date}} with {{appointment.staff_id}} <button><a href="/appointments/{{appointment.appointment_id}}/delete">Cancel Appointment</a></button>
     {% endfor %}
 {% endblock %}
