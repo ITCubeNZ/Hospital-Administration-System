@@ -200,6 +200,8 @@ def add_address(request):
                 city = form.cleaned_data.get('city'),
                 zipcode = form.cleaned_data.get('zipcode')
             )
+            messages.success(request, "Successfully added address.")
+            return redirect('update account')
 
     return render(request, 'address.html', {"form": form})
 

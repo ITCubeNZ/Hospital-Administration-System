@@ -1,6 +1,9 @@
 {% extends 'dash-base.html' %}
 {% block content %}
     <h1>Update Your Account</h1>
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
     <form action="" method="post">
         {% csrf_token %}
         {{form.as_p}}
