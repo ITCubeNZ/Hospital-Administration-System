@@ -353,3 +353,12 @@ img{
     }
 }
 
+/* dash home css */
+.dash_main h4 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 4%;
+    font-style: italic;
+    color: #287c91;
+}
