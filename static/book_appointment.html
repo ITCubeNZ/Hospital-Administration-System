@@ -1,23 +1,29 @@
-{% extends 'dash-base.html' %}
-{% block content %}
-    <h1>Book an Appointment</h1>
-    {% for message in messages %}
-    <p>{{message}}</p>
-    {% endfor %}
-    <form method="POST">
-        {% csrf_token %}
-        {{form.staff_id.label}} {{form.staff_id}}
-        <br>
-        {{form.department.label}} {{form.department}}
-        <br>
-        {{form.appointment_date.label}} {{form.appointment_date}}
-        <br>
-        {{form.contact_phone.label}} {{form.contact_phone}}
-        <br>
-        {{form.by_referral.label}} {{form.by_referral}}
-        <br>
-        {{form.appointment_charges.label}} {{form.appointment_charges}}
-        <button type="submit" name="Book Appointment">Book Appointment</button>
-    </form>
+{% extends 'dash-base.html' %} {% block content %}
+<div class="dash">
+  <div class="s_text">
+    <h3>Book an Appointment</h3>
+    <p>please fill following info to book your appointmnet.</p>
+  </div>
 
-{% endblock %}
+  {% for message in messages %}
+  <p>{{message}}</p>
+  {% endfor %}
+
+  <div class="form">
+    <form method="POST">
+      {% csrf_token %} {{form.staff_id.label}} {{form.staff_id}}
+      <br />
+      {{form.department.label}} {{form.department}}
+      <br />
+      {{form.appointment_date.label}} {{form.appointment_date}}
+      <br />
+      {{form.contact_phone.label}} {{form.contact_phone}}
+      <br />
+      {{form.by_referral.label}} {{form.by_referral}}
+      <br />
+      {{form.appointment_charges.label}} {{form.appointment_charges}}
+      <button type="submit" name="Book Appointment">Book Appointment</button>
+    </form>
+  </div>
+  {% endblock %}
+</div>

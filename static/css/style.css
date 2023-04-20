@@ -183,7 +183,7 @@ img{
     text-align: center;
 }
 
-.form  input[type=text], input[type=password], input[type=email] {
+.form  input[type=text], input[type=password], input[type=email]  {
     width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -193,7 +193,11 @@ img{
     box-sizing: border-box; 
     align-items: center;
 } 
-
+.form label {
+    width: 50%;
+    font-style: italic;
+    
+}
 .form ::placeholder{
     text-align: center;
 }
@@ -354,7 +358,25 @@ img{
 }
 
 /* dash home css */
-.dash_main h4 {
+.dash{
+    border: 2px solid black ;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #d4e7e2;
+    padding: 5%;
+    margin: 5% 5%;
+    display: block;
+    text-align: center;
+}
+.dash_main h3{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 4%;
+    font-style: italic;
+    color: black;
+}
+.dash_main h5{
     text-align: center;
     font-size: 25px;
     font-weight: bold;
