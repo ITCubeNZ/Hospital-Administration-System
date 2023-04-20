@@ -12,9 +12,9 @@
             <button type="submit" name="Login">login</button>
         </form>
         <p>Don't have an account? Click <a href="/register">here</a> to register an account.</p>
-    </div>
         {% for message in messages %}
-        <p>{{message}}</p>
-    
-{% endfor %}
+            <p>{{message}}</p>
+        {% endfor %}
+    </div>
+        
 {% endblock%}

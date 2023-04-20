@@ -172,6 +172,8 @@ def update_account(request):
         form = UpdateAccountForm(request.POST, instance=current_patient)
         if form.is_valid():
             form.save()
+            messages.success(request, "Successfully updated your details.")
+            return redirect('dashboard')
 
     return render(request, 'update_user.html', {'form': form})
 

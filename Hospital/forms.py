@@ -18,7 +18,7 @@ class UpdateAccountForm(forms.ModelForm):
     """
     class Meta:
         model = Patient
-        fields = "__all__"
+        fields = ["first_name", "last_name", "Date of Birth", "phone", "address"]
 
 class AppointmentForm(forms.ModelForm):
     """
