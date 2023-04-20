@@ -1,7 +1,18 @@
-{% extends 'base.html' %}
-{% block content%}
-<h1>Staff Members</h1>
-{% for user in staff %}
-<h3> <a href="{{user.staff_id}}">{{user.first_name}} {{user.last_name}}</a></h3>
-{% endfor %}
+{% extends 'base.html' %} {% block content%} {% load static %}
+<img class="d_img" src="{% static 'images/doctors.jpg' %}" />
+
+<div class="d_text">
+  <h3>look for specialists</h3>
+  <h3>Our Doctors and Senior staff</h3>
+</div>
+
+<div class="container">
+  <div class="card">
+    {% for user in staff %}
+    <li>
+      <a href="{{user.staff_id}}">{{user.first_name}} {{user.last_name}}</a>
+    </li>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

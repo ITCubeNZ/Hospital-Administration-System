@@ -9,11 +9,21 @@
 </div>
 {% load static %}
 <img class="d_img" src="{% static 'images/spe.jpg' %}" />
+<div class="d_text">
+  <h3>Our departments</h3>
+  <p>
+    Supported by the very latest technology, equipment, and facilities, at Bowen
+    Hospital we are able to provide the most comprehensive range of private
+    surgical facilities and other services in the Wellington area.
+  </p>
+</div>
 <div class="container">
   <div class="card">
     {% for object in department %}
     <li>
-      <a href="/departments/{{object.department_id}}">{{object.department_name}}</a>
+      <a href="/departments/{{object.department_id}}"
+        >{{object.department_name}}</a
+      >
     </li>
     {% endfor %}
   </div>

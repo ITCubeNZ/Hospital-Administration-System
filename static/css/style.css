@@ -139,7 +139,13 @@ img{
     display: block;
     margin: 0 auto;
     padding: 2%;
+}
 
+.h_text{
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
+    padding: 5px;
 }
 .container .card{
     display: flex;
@@ -309,3 +315,41 @@ img{
         background:none;
     }
 }
+
+/* department page */
+.d_column {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width: 100%;
+}
+.details {
+    margin: 0 -5px;
+    padding: 2%;
+}
+.details:after {
+    content: ""; 
+    display: table; 
+    clear: both;
+}
+.d_card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    width: 100%;
+    line-height: 1.8;
+}
+
+.d_card h1{
+    color: #32b7d8;
+    font-style: italic;
+}
+@media screen and (max-width: 600px) {
+    .d_column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+}
+
