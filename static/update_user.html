@@ -7,6 +7,7 @@
     <form action="" method="post">
         {% csrf_token %}
         {{form.as_p}}
+        <p>Address not showing up? Click <a href="/dashboard/address">here</a> to add your address.</p>
         <input type="submit" value="Submit">
     </form>
     
