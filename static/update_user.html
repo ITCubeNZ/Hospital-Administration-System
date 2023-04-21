@@ -1,14 +1,21 @@
-{% extends 'dash-base.html' %}
-{% block content %}
+{% extends 'dash-base.html' %} {% block content %}
+<div class="dash">
+  <div class="s_text">
     <h1>Update Your Account</h1>
     {% for message in messages %}
     <p>{{message}}</p>
     {% endfor %}
+  </div>
+
+  <div class="form">
     <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <p>Address not showing up? Click <a href="/dashboard/address">here</a> to add your address.</p>
-        <input type="submit" value="Submit">
+      {% csrf_token %} {{form.as_p}}
+      <p>
+        Address not showing up? Click <a href="/dashboard/address">here</a> to
+        add your address.
+      </p>
+      <button type="submit" value="Submit">Submit</button>
     </form>
-    
+  </div>
+</div>
 {% endblock %}

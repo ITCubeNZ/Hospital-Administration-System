@@ -183,13 +183,24 @@ img{
     text-align: center;
 }
 
-.form  input[type=text], input[type=password], input[type=email]  {
+#id_staff_id, #id_department, #id_by_referral, #id_appointment_charges, #id_address{
     width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 25px;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    align-items: center;
+}
+
+.form input[type=text], input[type=password], input[type=email], input[type=checkbox], input[type=number] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     box-sizing: border-box; 
     align-items: center;
 } 
@@ -214,7 +225,7 @@ img{
 .form button:hover {
     opacity: 0.6;
   }
-.form p {
+.form h6 {
     font-size: 20px; 
     font-style: normal;
     padding: 2%;
@@ -383,4 +394,17 @@ img{
     margin: 4%;
     font-style: italic;
     color: #287c91;
+}
+.dash_main button {
+    background-color: #32b7d8;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 45px;
+    cursor: pointer;
+    width: 50%;
+}
+.dash_main a{
+    text-decoration: none;
+    color: #f1f1f1;
 }
